@@ -1,5 +1,7 @@
 <?php namespace GestorImagenes\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+
 class AlbumController extends Controller {
 
 	/*
@@ -23,7 +25,12 @@ class AlbumController extends Controller {
 		$this->middleware('auth');
 	}
 	public function getIndex(){
-		return 'mostrando album del usuario';
+
+		$usuario = Auth::user();
+
+		$albumes = $usuario->albumes;
+
+		return view('albumes.mostrar',['albumes' => $albumes]);
 	}
 
 	/**
