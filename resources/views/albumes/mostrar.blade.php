@@ -10,6 +10,11 @@
 	</div>
 @endif
 
+@if(Session::has('actualizado'))
+	<div class="alert alert-success">
+		<p>El album ha sido actualizado correctamente</p>
+	</div>
+@endif
 <div class="container-fluid">
 <p><a href="/validado/albumes/crear-album" class="btn btn-primary" role="button">Agregar album</a></p>
 @if(sizeof($albumes) > 0)
@@ -21,6 +26,7 @@
 						<h3>{{$album->nombre}}</h3>
 						<p>{{$album->descripcion}}</p>
 						<p><a href="/validado/fotos?id={{$album->id}}" class="btn btn-primary" role="button">Ver fotos</a></p>
+						<p><a href="/validado/albumes/actualizar-album/{{$album->id}}" class="btn btn-primary" role="button">Editar Album</a></p>
 					</div>
 					
 				</div>
