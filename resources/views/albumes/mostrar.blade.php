@@ -3,6 +3,13 @@
 
 
 @section('content')
+
+@if(Session::has('creado'))
+	<div class="alert alert-success">
+		<p>El album ha sido creado correctamente</p>
+	</div>
+@endif
+
 <div class="container-fluid">
 <p><a href="/validado/albumes/crear-album" class="btn btn-primary" role="button">Agregar album</a></p>
 @if(sizeof($albumes) > 0)

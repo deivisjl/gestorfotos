@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Auth;
 
+use GestorImagenes\Http\Requests\CrearAlbumRequest;
+
+use GestorImagenes\Album;
+
 class AlbumController extends Controller {
 
 	/*
@@ -40,12 +44,20 @@ class AlbumController extends Controller {
 	 */
 	public function getCrearAlbum()
 	{
-		return 'formulario de crear Albums';
+		return view('albumes.crear-album');
 	}
 
-	public function postCrearAlbum()
+	public function postCrearAlbum(CrearAlbumRequest $request)
 	{
-		return 'almacenando Albums';
+		$usuario = Auth::user();
+
+		Album::create([
+				'nombre' => $request->get('nombre'),
+				'descripcion' => $request->get('descripcion'),
+				'usuario_id' => $usuario->id
+			]);
+
+		return redirect('/validado/albumes')->with('creado','El album ha sido creado');
 	}
 
 	public function getActualizarAlbum()
