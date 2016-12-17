@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container-fluid">
-<p><a href="/validado/albumes/crear-foto" class="btn btn-primary" role="button">Agregar fotos</a></p>
+<p><a href="/validado/fotos/crear-foto?id={{$id}}" class="btn btn-primary" role="button">Agregar fotos</a></p>
 @if(sizeof($fotos) > 0)
 	@foreach($fotos as $foto)
 		<div class="row">
