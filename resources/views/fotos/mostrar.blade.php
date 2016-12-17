@@ -3,6 +3,13 @@
 
 
 @section('content')
+
+@if(Session:has('editada'))
+	<div class="alert alert-success">
+		<p>La foto ha sido editada correctamente</p>
+	</div>
+@endif
+
 <div class="container-fluid">
 <p><a href="/validado/fotos/crear-foto?id={{$id}}" class="btn btn-primary" role="button">Agregar fotos</a></p>
 @if(sizeof($fotos) > 0)
@@ -15,7 +22,7 @@
 						<h3>{{$foto->nombre}}</h3>
 						<p>{{$foto->descripcion}}</p>
 					</div>
-					
+					<p><a href="/validado/fotos/actualizar-foto/{{$foto->id}}" class="btn btn-primary" role="button">Actualizar foto</a></p>
 				</div>
 			</div>
 			
