@@ -39,7 +39,7 @@ class FotoController extends Controller {
 
 		$fotos = Album::find($id)->fotos;
 
-		return view('fotos.mostrar',['fotos' => $fotos, 'id' => $id]);
+		return view('fotos.mostrar', ['fotos' => $fotos, 'id' => $id]); 
 	}
 	/**
 	 * Show the application dashboard to the user.
@@ -83,13 +83,14 @@ class FotoController extends Controller {
 
 	public function postActualizarFoto(ActualizarFotoRequest $request)
 	{
+
 		$foto = Foto::find($request->get('id'));
 
 		$foto->nombre = $request->get('nombre');
 
 		$foto->descripcion = $request->get('descripcion');
 
-		if($request->hasFile('imagen')){
+		if($request->hasFile('imagen')){			
 
 			$imagen = $request->file('imagen');
 
