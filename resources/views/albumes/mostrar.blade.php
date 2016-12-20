@@ -15,6 +15,13 @@
 		<p>El album ha sido actualizado correctamente</p>
 	</div>
 @endif
+
+@if(Session::has('eliminado'))
+	<div class="alert alert-danger">
+		<p>@Session::get('eliminado')</p>
+	</div>
+@endif
+
 <div class="container-fluid">
 <p><a href="/validado/albumes/crear-album" class="btn btn-primary" role="button">Agregar album</a></p>
 @if(sizeof($albumes) > 0)
@@ -27,6 +34,12 @@
 						<p>{{$album->descripcion}}</p>
 						<p><a href="/validado/fotos?id={{$album->id}}" class="btn btn-primary" role="button">Ver fotos</a></p>
 						<p><a href="/validado/albumes/actualizar-album/{{$album->id}}" class="btn btn-primary" role="button">Editar Album</a></p>
+						<form action="/validado/albumes/eliminar-album" method="POST">
+							<input type="hidden" name="_token" value="{{ csrf_token() }}" required>
+							<input type="hidden" name="id" value="{{$album->id}}" required>
+							<input type="submit" class="btn btn-danger" role="button" value="Eliminar">
+						</form>
+
 					</div>
 					
 				</div>
