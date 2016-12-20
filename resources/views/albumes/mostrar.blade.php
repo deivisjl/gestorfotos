@@ -18,16 +18,18 @@
 
 @if(Session::has('eliminado'))
 	<div class="alert alert-danger">
-		<p>@Session::get('eliminado')</p>
+		<p>{{ Session::get('eliminado') }}</p>
 	</div>
 @endif
 
 <div class="container-fluid">
 <p><a href="/validado/albumes/crear-album" class="btn btn-primary" role="button">Agregar album</a></p>
 @if(sizeof($albumes) > 0)
-	@foreach($albumes as $album)
+	@foreach($albumes as $index => $album)
+		@if($index%3 == 0)
 		<div class="row">
-			<div class="col-sm-6 col-md-12">
+		@endif
+			<div class="col-sm-6 col-md-4">
 				<div class="thumbnail">
 					<div class="caption">
 						<h3>{{$album->nombre}}</h3>
@@ -44,8 +46,9 @@
 					
 				</div>
 			</div>
-			
+		@if(($index+1)%3 == 0)	
 		</div>		
+		@endif
 	@endforeach
 
 @else
